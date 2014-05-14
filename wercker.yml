@@ -26,8 +26,11 @@ build:
         name: Install Vagrant
         code: sudo dpkg -i vagrant_1.6.2_x86_64.deb
     - script:
-        name: Run vagrant plugin install
+        name: Run vagrant digitalocean plugin install
         code: vagrant plugin install vagrant-digitalocean
+    - script:
+        name: Run vagrant omnibus plugin install
+        code: vagrant plugin install vagrant-omnibus
     - script:
         name: Run vagrant up
         code: vagrant up --provider=digital_ocean
