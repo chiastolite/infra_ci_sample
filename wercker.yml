@@ -38,8 +38,8 @@ build:
         name: Run vagrant up
         code: vagrant up --provider=digital_ocean
     - script:
-        name: Run rake spec:proxy
-        code: rake spec:proxy
+        name: Run rake spec
+        code: rake spec
   after-steps:
     - script:
         name: Run vagrant destroy
