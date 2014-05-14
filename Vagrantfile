@@ -6,6 +6,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = 'infra-ci'
+  config.vm.box = 'chef/ubuntu-14.04'
 
   if Vagrant.has_plugin?("vagrant-omnibus")
     config.omnibus.chef_version = :latest
@@ -26,5 +27,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     else
       provider.ssh_key_name = "Vagrant"
     end
+  end
+
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = './cookbooks/'
+    chef.run_list = %w(nginx)
   end
 end
