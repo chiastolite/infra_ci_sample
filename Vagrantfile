@@ -6,6 +6,11 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = 'infra-ci'
+
+  if Vagrant.has_plugin?("vagrant-omnibus")
+    config.omnibus.chef_version = :latest
+  end
+
   config.vm.provider :digital_ocean do |provider, override|
     override.ssh.private_key_path = '~/.ssh/id_rsa'
     override.vm.box     = 'digital_ocean'
