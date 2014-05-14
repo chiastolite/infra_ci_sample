@@ -15,5 +15,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     provider.region = 'Singapore 1'
     provider.client_id = ENV['DO_CLIENT_ID']
     provider.api_key   = ENV['DO_API_KEY']
+
+    if ENV['WERCKER'] == "true"
+      provider.ssh_key_name = "wercker vagrant"
+    else
+      provider.ssh_key_name = "Vagrant"
+    end
   end
 end
