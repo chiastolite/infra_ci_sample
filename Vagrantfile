@@ -5,7 +5,11 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.hostname = 'infra-ci'
+  if ENV['WERCKER'] == "true"
+    config.vm.hostname = 'infra-ci'
+  else
+    config.vm.hostname = 'infra-develop'
+  end
   config.vm.box = 'chef/ubuntu-14.04'
 
   if Vagrant.has_plugin?("vagrant-omnibus")

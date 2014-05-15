@@ -2,7 +2,7 @@ package 'nginx'
 
 service 'nginx' do
   supports restart: true, reload: true
-  action [:enable, :start]
+  action [:start]
 end
 
 template '/etc/nginx/nginx.conf' do
